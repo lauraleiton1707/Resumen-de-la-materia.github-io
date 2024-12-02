@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen de Ingeniería de Software</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffe4e1;
+            color: #4b2c2b;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #f4cccc;
+            color: #4b2c2b;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff0f0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1, h2, h3 {
+            color: #b56576;
+        }
+        ul, pre {
+            background: #ffe4e1;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table th, table td {
+            border: 1px solid #b56576;
+            padding: 10px;
+            text-align: left;
+        }
+        table th {
+            background-color: #f4cccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Resumen: Ingeniería de Software</h1>
+    </header>
+    <div class="container">
+        <section>
+            <h2>Metodologías de Desarrollo de Software</h2>
+            <p>Las metodologías son guías o enfoques organizados que se utilizan para planificar, estructurar y controlar el desarrollo de sistemas de software. Algunas destacadas son:</p>
+            <ul>
+                <li><strong>Cascada:</strong> Modelo secuencial en el que cada etapa debe completarse antes de avanzar a la siguiente.</li>
+                <li><strong>Ágil:</strong> Proceso iterativo con entregas incrementales, orientado a la retroalimentación constante de los stakeholders.</li>
+                <li><strong>Scrum:</strong> Un marco dentro de Agile que utiliza roles (como Scrum Master), artefactos y reuniones diarias para gestionar proyectos en sprints.</li>
+                <li><strong>Kanban:</strong> Herramienta visual para gestionar el flujo de trabajo con tableros y tarjetas.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Comandos Básicos de Git</h2>
+            <p>Git es un sistema de control de versiones distribuido ampliamente usado en el desarrollo de software. Los siguientes comandos permiten gestionar repositorios en GitHub:</p>
+            <pre>
+# Inicializar un repositorio
+git init
+
+# Agregar archivos al área de preparación
+git add .
+
+# Crear un commit con un mensaje
+git commit -m "Comentario del commit"
+
+# Vincular el repositorio local con GitHub
+git remote add origin <URL-del-repositorio>
+
+# Subir los cambios a GitHub
+git push -u origin main
+
+# Actualizar el repositorio local con cambios del remoto
+git pull origin main
+            </pre>
+        </section>
+        <section>
+            <h2>Código Python para Base de Datos SQLite</h2>
+            <p>A continuación, se presenta un código en Python para crear una base de datos llamada "autoconocimiento.db" y una tabla relacionada:</p>
+            <pre>
+import sqlite3 as sql
+
+# Crear la base de datos
+def createDB():
+    conn = sql.connect("autoconocimiento.db")
+    print("Base de datos creada")
+    conn.close()
+
+# Crear la tabla "respuestas"
+def createTable():
+    conn = sql.connect("autoconocimiento.db")
+    cursor = conn.cursor()
+    cursor.execute("""
+       CREATE TABLE respuestas (
+           id_respuesta INTEGER PRIMARY KEY AUTOINCREMENT,
+           id_pregunta INTEGER,
+           respuesta_usuario TEXT CHECK(respuesta_usuario IN ('A', 'B')) NOT NULL,
+           FOREIGN KEY (id_pregunta) REFERENCES preguntas(id_pregunta)
+       );
+    """)
+    conn.commit()
+    conn.close()
+
+if _name_ == "_main_":
+    createDB()
+    createTable()
+            </pre>
+        </section>
+        <section>
+            <h2>Ejemplo de Tabla para la Base de Datos</h2>
+            <p>La estructura de la tabla <code>respuestas</code> queda de la siguiente manera:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Campo</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>id_respuesta</td>
+                        <td>INTEGER</td>
+                        <td>Identificador único de cada respuesta (clave primaria).</td>
+                    </tr>
+                    <tr>
+                        <td>id_pregunta</td>
+                        <td>INTEGER</td>
+                        <td>Identificador de la pregunta relacionada (clave foránea).</td>
+                    </tr>
+                    <tr>
+                        <td>respuesta_usuario</td>
+                        <td>TEXT</td>
+                        <td>Respuesta del usuario ('A' o 'B').</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</body>
+</html>
